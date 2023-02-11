@@ -8,7 +8,7 @@ Parsing courses for LearnFlow and optional folders in os Windows.
 
 `Run script
 
-````
-	python main.py
 ```
-````
+	python main.py
+
+```
