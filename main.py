@@ -22,7 +22,7 @@ while True:
         print(Fore.CYAN + '================================================================')
         folder_path = input(Fore.GREEN + "Введите путь к папке: " + Style.RESET_ALL)
         print(Fore.CYAN + '================================================================')
-        upload = input(Fore.GREEN + "Хотите выгрузить файл в определенную папку? (1-Да / 2-Нет) " + Style.RESET_ALL)
+        upload = input(Fore.GREEN + "Хотите выгрузить файл в определенную папку? (1-Да / 2-Нет | Файл будет добавлен в текущую папку) " + Style.RESET_ALL)
         if upload == "1":
             print(Fore.CYAN + '================================================================')
             file_path = input(Fore.GREEN + "Введите куда выгрузить результат: " + Style.RESET_ALL)
@@ -31,6 +31,7 @@ while True:
         elif upload == "2":
             filename = "data" + datetime.datetime.now().strftime("%d_%m_%Y_%S") + ".json"
             file_path = filename
+            print(Fore.MAGENTA + '============== Файл добавлен в текущую папку ===================')
             break
         else:
             print(Fore.RED + "Недопустимый выбор, повторите ввод" + Style.RESET_ALL)
