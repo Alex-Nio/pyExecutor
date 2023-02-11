@@ -10,5 +10,4 @@ Parsing courses for LearnFlow and optional folders in os Windows.
 
 ```
 	python main.py
-
 ```
