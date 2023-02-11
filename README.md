@@ -6,7 +6,7 @@ Parsing courses for LearnFlow and optional folders in os Windows.
 
 -Install Python (I use v.3.11.0b4)
 
-`Run script
+-Run script
 
 ```
 	python main.py
