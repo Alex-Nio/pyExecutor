@@ -2,6 +2,7 @@ import os
 import json
 import datetime
 from colorama import init, Fore, Style
+from tqdm import tqdm
 
 while True:
     print(Fore.MAGENTA + "===================== Инструкции ===============================")
@@ -37,7 +38,6 @@ while True:
     elif upload == "2":
         filename = "data" + datetime.datetime.now().strftime("%d_%m_%Y_%S") + ".json"
         file_path = filename
-        print(Fore.MAGENTA + "============== Файл добавлен в текущую папку ===================")
         break
     elif upload == "3":
         exit()
@@ -62,12 +62,16 @@ def parse_folder(folder_path):
 
     return result
 
-def parse_root_folder(folder_path):
+def parse_root_folder(folder_path, progress_bar=None):
     parsed_data = {"data": []}
     files_data = {"root_files": []}
 
     if os.path.exists(folder_path) and os.path.isdir(folder_path):
-        for item_name in os.listdir(folder_path):
+        items = os.listdir(folder_path)
+        if progress_bar:
+            items = tqdm(items, desc="Прогресс", unit="файлов", dynamic_ncols=True)  # Создаем прогресс-бар
+
+        for item_name in items:
             item_path = os.path.join(folder_path, item_name)
 
             if os.path.isdir(item_path):
@@ -78,9 +82,10 @@ def parse_root_folder(folder_path):
                 files_data["root_files"].append(item_name)
 
     parsed_data["data"].append(files_data)
+    print(Fore.MAGENTA + "============== Файл добавлен в текущую папку ===================")
     return parsed_data
 
-result_json = parse_root_folder(folder_path)
+result_json = parse_root_folder(folder_path, progress_bar=True)
 
 with open(file_path, "w", encoding="utf-8") as f:
     json.dump(result_json, f, ensure_ascii=False, indent=4)
