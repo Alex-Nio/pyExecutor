@@ -82,8 +82,6 @@ def parse_root_folder(folder_path):
 
 result_json = parse_root_folder(folder_path)
 
-print(result_json)
-
 with open(file_path, "w", encoding="utf-8") as f:
     json.dump(result_json, f, ensure_ascii=False, indent=4)
 
